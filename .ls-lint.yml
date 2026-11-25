@@ -1,0 +1,55 @@
+ls:
+  "src/**/dtos/**":
+    .ts: regex:^[a-z0-9-]+.dto$
+  "src/**/models/**":
+    .ts: regex:^[a-z0-9-]+.model$
+  "src/**/interfaces/**":
+    .ts: regex:^[a-z0-9-]+.interface$
+  "src/**/repositories/**":
+    .ts: regex:^[a-z0-9-]+.repository$
+  "src/**/services/**":
+    .ts: regex:^[a-z0-9-]+.services$
+  "src/**/errors/**":
+    .ts: regex:^[a-z0-9-]+.error$
+
+  "src/**/mappers/**":
+    .ts: regex:^[a-z0-9-]+.mapper$
+
+  "src/**/pages/**":
+    .tsx: regex:^[a-z0-9-]+.page$
+  "src/**/hooks/**":
+    .ts: regex:^[a-z0-9-]+.hook$
+  "src/**/context/**":
+    .tsx: regex:^[a-z0-9-]+.context$
+    .ts: regex:^[a-z0-9-]+.context$
+  "src/**/stores/**":
+    .ts: regex:^[a-z0-9-]+.store$
+  "src/**/reducers/**":
+    .ts: regex:^[a-z0-9-]+.reducer$
+
+  "src/**/config/**":
+    .ts: regex:^[a-z0-9-]+.config$
+
+  "src/**":
+    .dir: kebab-case
+    .ts: kebab-case
+    .tsx: kebab-case
+
+ignore:
+  - node_modules
+  - .git
+  - dist
+  - build
+  - docs
+  - .vscode
+  - scripts
+  - .agents
+  - __test__
+  - __tests__
+  - .env.local
+  - .env.template
+  - vite.config.ts
+  - "*.json"
+  - .wakatime-project
+  - "main.tsx"
+  - "src/**/App.tsx"

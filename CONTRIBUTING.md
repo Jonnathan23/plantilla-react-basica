@@ -1,0 +1,223 @@
+# CONTRIBUTING
+
+¡Gracias por contribuir a este proyecto! Este documento describe las
+convenciones que seguimos para mantener un desarrollo organizado y
+consistente.
+
+## 📋 Requisitos previos
+
+Antes de comenzar:
+
+- Tener Git instalado.
+- Tener el entorno del proyecto configurado.
+- Instalar las dependencias.
+- Verificar que Husky y Commitlint estén habilitados.
+
+---
+
+# 🌳 Estrategia de ramas
+
+```text
+production
+└── develop
+    └── epic/<modulo>-<funcionalidad>-<ticket>
+        ├── feat/<modulo>-<funcionalidad>[-ticket]
+        ├── fix/<modulo>-<bug>[-ticket]
+        ├── refactor/<modulo>-<tarea>[-ticket]
+        └── ...
+```
+
+## Ramas principales
+
+### `production`
+
+- Código estable.
+- No se permiten pushes directos.
+- Solo recibe cambios mediante Pull Request aprobado.
+
+### `develop`
+
+- Rama principal de integración.
+- Desde aquí nacen todas las ramas épicas.
+
+## Ramas épicas (Ticket OBLIGATORIO)
+
+Formato:
+
+```text
+epic/<modulo>-<funcionalidad>-<ticket>
+```
+
+Ejemplo:
+
+```text
+epic/admin-desk-12
+```
+
+## Ramas de trabajo (Ticket OPCIONAL)
+
+Formato:
+
+```text
+<type>/<modulo>-<funcionalidad>[-ticket]
+```
+
+Ejemplos:
+
+```text
+feat/expenses-budget-form
+feat/admin-desk-login-12
+fix/shared-currency-format
+refactor/config-query-client
+```
+
+---
+
+# 💬 Convención de commits
+
+Formato obligatorio:
+
+```text
+type(scope): imperative description
+```
+
+Todo el mensaje debe estar:
+
+- en inglés o español
+- en minúsculas
+- sin punto final
+
+## Tipos permitidos
+
+Tipo Uso
+
+---
+
+- **feat**: Nueva funcionalidad
+- **fix**: Corrección de errores
+- **docs**: Documentación
+- **style**: Formato
+- **refactor**: Refactorización
+- **chore**: Mantenimiento
+
+## Scopes permitidos
+
+Scope Carpeta
+
+---
+
+- **config**: `src/config/`
+- **shared**: `src/shared/`
+- **trans**: `src/features/transactions/`
+- **accounts**: `src/features/accounts/`
+- **new-feat**: `src/features/[news-feat]`
+- **android**: `android/`
+- **public**: `public/`
+- **deps**: dependencias (`package.json`, `pnpm-lock.yaml`)
+- **tools**: configuración de herramientas (`vite`, `eslint`, etc.)
+- **root**: Configuración principal (`App.tsx`, `main.tsx`, etc.)
+- **ci**: GitHub Actions, Husky, CI
+
+## Ejemplos válidos
+
+```bash
+git commit -m "feat(trans): create budget form component"
+git commit -m "fix(shared): resolve currency formatter"
+git commit -m "docs(root): update contributing guide"
+git commit -m "chore(ci): update commitlint configuration"
+```
+
+## Ejemplos inválidos
+
+```text
+Actualice el formulario
+feat(UI): add button
+fix(trans): Fix bug.
+```
+
+---
+
+# 📝 Convención de Pull Requests
+
+El título del PR debe resumir la característica principal usando la convención `tipo[(scope_opcional)]: descripción`.
+El tipo es obligatorio (`feat`, `fix`, `chore`, etc.) y el scope es opcional si el cambio abarca múltiples módulos.
+
+---
+
+# 🔀 Flujo de trabajo
+
+1.  Actualizar la rama épica.
+
+```bash
+git checkout epic/expenses-dashboard-40
+git pull origin epic/expenses-dashboard-40
+```
+
+2.  Crear una rama nueva.
+
+```bash
+git checkout -b feat/expenses-modal-40
+```
+
+3.  Desarrollar la funcionalidad.
+
+4.  Crear commits siguiendo el estándar.
+
+```bash
+git commit -m "feat(trans): add expense modal"
+```
+
+5.  Subir la rama.
+
+```bash
+git push origin feat/expenses-modal-40
+```
+
+6.  Abrir un Pull Request hacia la rama épica correspondiente.
+
+---
+
+# ✅ Checklist antes del Pull Request
+
+- [ ] El proyecto compila correctamente.
+- [ ] No existen errores de lint.
+- [ ] Los commits siguen el formato establecido.
+- [ ] La rama sigue la convención de nombres.
+- [ ] Se eliminaron archivos temporales.
+- [ ] Se actualizó la documentación si era necesario.
+
+---
+
+# 🚫 Errores comunes
+
+- Hacer push directamente a `production`.
+- Crear ramas fuera de una rama épica.
+- Utilizar nombres con espacios o mayúsculas.
+- Utilizar scopes no permitidos.
+
+---
+
+# 📖 Ejemplo completo
+
+```bash
+git checkout develop
+git pull origin develop
+
+git checkout -b epic/expenses-dashboard-40
+git push -u origin epic/expenses-dashboard-40
+
+git checkout -b feat/expenses-budget-form-40
+
+# desarrollar...
+
+git add .
+git commit -m "feat(trans): create budget form"
+
+git push origin feat/expenses-budget-form-40
+
+# abrir Pull Request:
+# feat/expenses-budget-form-40 -> epic/expenses-dashboard-40
+```
+
+Gracias por ayudar a mantener el proyecto limpio, consistente y fácil de
+mantener.

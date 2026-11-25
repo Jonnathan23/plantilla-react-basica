@@ -1,0 +1,5 @@
+echo "Verificando la estructura de archivos..."
+pnpm run ls-lint
+
+echo "Validando reglas de arquitectura, dependencias y estilo..."
+pnpm run lint-staged

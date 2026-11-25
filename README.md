@@ -1,78 +1,56 @@
-# React + TypeScript + Vite
+# ⚛️ Plantilla React + Vite + TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plantilla base configurada con **React**, **Vite**, **TypeScript (modo estricto)**, **Tailwind CSS v4**, rutas absolutas (`@/`), **ESLint**, **Prettier**, **ls-lint** y **Husky**.
 
-Currently, two official plugins are available:
+## 📋 Requisitos previos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> [!IMPORTANT]
+> El uso de **`pnpm` es obligatorio** en este proyecto. Instalar dependencias con `npm` o `yarn` está bloqueado automáticamente mediante el script `preinstall`.
 
-## React Compiler
+- **Node.js**: `>=22.23.1`
+- **pnpm**: `>=11.9.0` (versión fijada: `pnpm@11.9.0`)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## 📦 Primeros pasos
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+Instala las dependencias del proyecto con `pnpm`. Esto también inicializará automáticamente los hooks de Git con **Husky** (gracias al script `prepare` en `package.json`):
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+_(Si en algún momento necesitas inicializar los hooks manualmente, ejecuta `pnpm run prepare`.)_
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Servidor de desarrollo
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Para iniciar el servidor local de desarrollo con Hot Module Replacement (HMR), ejecuta:
 
+```bash
+pnpm run dev
 ```
+
+_(Por defecto estará disponible en `http://localhost:5173`.)_
+
+## 🧹 Scripts de calidad de código y linting
+
+Este proyecto aplica reglas estrictas de calidad, formato, tipado y arquitectura. Utiliza los siguientes scripts para auditar el código:
+
+- **Lint de código (ESLint & Prettier):** analiza errores, reglas de arquitectura y formato en TypeScript/React.
+- **Lint de estructura de archivos (`ls-lint`):** valida las convenciones de nombres de archivos y carpetas.
+- **Verificación de tipos (TypeScript):** ejecuta el compilador (`tsc -b`) para detectar errores de tipado.
+- **Lint de archivos en stage (`lint-staged`):** audita únicamente los archivos listos para commit (también se ejecuta automáticamente en el hook `pre-commit`).
+
+```bash
+pnpm run lint
+pnpm run lint:fs
+pnpm run typecheck
+pnpm run lint-staged
+```
+
+## 🐶 Git Hooks (Husky)
+
+Este proyecto utiliza **Husky** para ejecutar validaciones automáticas antes de cada commit. El hook `pre-commit` verifica:
+
+1. La estructura y nomenclatura de archivos (`pnpm run ls-lint`).
+2. Las reglas de arquitectura, dependencias y estilo sobre los archivos en stage (`pnpm run lint-staged`).
+
+Esto garantiza que no ingrese código sin formatear o con errores al repositorio.
