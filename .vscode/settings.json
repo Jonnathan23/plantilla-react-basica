@@ -1,0 +1,27 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "eslint.workingDirectories": [{ "mode": "auto" }],
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "README.md": "CONTRIBUTING.md, CHANGELOG.md, LICENSE*, SECURITY.md, CODE_OF_CONDUCT.md",
+        "package.json": "pnpm-lock.yaml, package-lock.json, yarn.lock, bun.lock*, .npmrc, .nvmrc, .node-version",
+        "tsconfig.json": "tsconfig.*.json, *.tsbuildinfo",
+        "eslint.config.js": "prettier.config.*, .prettier*, .ls-lint.yml, lint-staged.config.*, knip.config.*, commitlint.config.*, .editorconfig",
+        "vite.config.ts": "vitest.config.*, tailwind.config.*, postcss.config.*",
+        ".gitignore": ".gitattributes, .gitmodules, .dockerignore",
+        ".env.template": ".env*"
+    }
+}
